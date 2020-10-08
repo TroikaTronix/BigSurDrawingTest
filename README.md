@@ -7,7 +7,7 @@ On previous versions of macOS, when you invalidated an area using setNeedsDispla
 
 Under Big Sur Beta 9, calling `getRectsBeingDrawn:count:` to determine the invalid area always returns the entire frame of the view. This is bad because routines that rely on `getRectsBeingDrawn:count:` to optimize drawing are getting the wrong information, and will draw more than they need to draw.
 
-But even more serious is this: even `getRectsBeingDrawn:count:` reports the entire frame as being invalid, you cannot successfully to draw into the area that has not been invalidated.
+But even more serious is this: even `getRectsBeingDrawn:count:` reports the entire view as being invalid, you cannot successfully to draw into the area that has not been invalidated.
 
 To see this more serious problem in action, run the BigSurDrawingTest under Big Sur, and choose "Invalidate Inner View 2 Partial Rect" from the "Action" menu.
 
