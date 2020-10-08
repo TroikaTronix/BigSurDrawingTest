@@ -1,7 +1,9 @@
 # BigSurDrawingTest
 Test Big Sur Drawing Inconsistencies
  
-This file demonstrates a serious bug in the Big Sur Beta 9. On previous versions of macOS, when you invalidated an area using setNeedsDisplayInRect:, calling the `getRectsBeingDrawn:count:` method in the drawRect: method for a view would correctly return the invalidated area.
+This file demonstrates a serious bug in the Big Sur Beta 9.
+
+On previous versions of macOS, when you invalidated an area using setNeedsDisplayInRect:, calling the `getRectsBeingDrawn:count:` method in the drawRect: method for a view would correctly return the invalidated area.
 
 Under Big Sur Beta 9, calling `getRectsBeingDrawn:count:` to determine the invalid area always returns the entire frame of the view. This is bad because routines that rely on `getRectsBeingDrawn:count:` to optimize drawing are getting the wrong information, and will draw more than they need to draw.
 
