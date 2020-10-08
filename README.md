@@ -3,7 +3,7 @@ Test Big Sur Drawing Inconsistencies
  
 This file demonstrates a serious bug in the Big Sur Beta 9.
 
-On previous versions of macOS, when you invalidated an area using setNeedsDisplayInRect:, calling the `getRectsBeingDrawn:count:` method in the drawRect: method for a view would correctly return the invalidated area.
+On previous versions of macOS, when you invalidated an area using `setNeedsDisplayInRect:`, calling the `getRectsBeingDrawn:count:` method in the drawRect: method for a view would correctly return the invalidated area.
 
 Under Big Sur Beta 9, calling `getRectsBeingDrawn:count:` to determine the invalid area always returns the entire frame of the view. This is bad because routines that rely on `getRectsBeingDrawn:count:` to optimize drawing are getting the wrong information, and will draw more than they need to draw.
 
@@ -11,14 +11,14 @@ But even more serious is this: even `getRectsBeingDrawn:count:` reports the enti
 
 To see this more serious problem in action, run the BigSurDrawingTest under Big Sur, and choose "Invalidate Inner View 2 Partial Rect" from the "Action" menu.
 
-This executes the xxx function, which executes the following code to invalidate a rect that is 100 pixels across by 10 pixels high at the coordinate 10,10.
+This executes the `invalidateAreaView2:` function, which executes the following code to invalidate a rect that is 100 pixels across by 10 pixels high at the coordinate 10,10.
 
     sDrawView2AltColor = true;
     [view2 setNeedsDisplayInRect:NSMakeRect(10, 10, 100, 10)];
 
-Note also that the sDrawView2AltColor flag is set here.
+Note also that the `sDrawView2AltColor` flag is set here.
 
-When the drawing function for the custom view is called, it does the following test to see if the sDrawView2AltColor flag is set and if we are drawing view_2:
+When the drawing function for the custom view is called, it does the following test to see if the `sDrawView2AltColor` flag is set and if we are drawing view_2:
 
     sDrawView2AltColor && [[self identifier] isEqualToString:@"view_2"]
 
